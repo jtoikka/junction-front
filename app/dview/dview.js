@@ -16,7 +16,6 @@ var items = [
 
 debts.controller("DebtPersonController", function ($scope) {
   $scope.persons = persons;
-  $scope.pending = pending;
 
   $scope.greaterThan = function(prop, val){
     return function(item){
