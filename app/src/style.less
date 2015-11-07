@@ -22,6 +22,11 @@ body {
   }
 }
 
+#main-contents {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .panel {
   background-color: @panel-background-color;
   border-color: #000;
@@ -52,21 +57,34 @@ body {
     border-top-width: 0;
   }
   .table-pic {
+    border-width: 0;
     // background-color: #ff0000;
-    width: 100px;
+    width: 60px;
+    padding-bottom: 0;
     img {
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
     }
   }
   .table-name {
+    padding-right: 0;
+    padding-bottom: 4px;
     // background-color: #00ff00;
     vertical-align: bottom;
+    border-color: #000000;
+    border-top-width: 0;
+    border-bottom: solid 1px #000000;
   }
   .table-money {
+    padding-left: 0;
+    padding-bottom: 4px;
     // background-color: #0000ff;
-    width: 120px;
+    text-align: right;
+    width: 100px;
     vertical-align: bottom;
+    border-color: #000000;
+    border-top-width: 0;
+    border-bottom: solid 1px #000000;
   }
 }
