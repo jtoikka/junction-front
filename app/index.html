@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/octicons/octicons.css">
   <link rel="stylesheet" href="app.css">
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="dview/dview.js"></script>
@@ -41,9 +42,11 @@
       </div>
     </div>
   </nav>
-    <section class="debtList" class="panel" ng-hide="view === 3">
-      <section class="gains" ng-show="view === 0 || view === 1">
-        <p>Owe to you</p>
+    <section class="container-fluid" id="debtList" ng-hide="view === 3">
+      <section id="gains" class="panel panel-default" ng-show="view === 0 || view === 1">
+        <section class="panel-heading">
+          <span title="Add transaction" class="mega-octicon octicon-plus"></span>
+        </section>
         <ul>
           <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
             <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
@@ -52,15 +55,19 @@
           </li>
         </ul>
       </section>
-      <section class="debts" ng-show="view === 0 || view === 2">
-        <p>You owe them</p>
-        <ul>
-          <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
-            <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-            <span>{{person.name}}</span>
-            <p>{{person.debt}}</p>
-          </li>
-        </ul>
+      <section id="debts" class="panel panel-default" ng-show="view === 0 || view === 2">
+        <section class="panel-heading">
+          You owe them
+        </section>
+        <section class="panel-body">
+          <ul>
+            <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
+              <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+              <span>{{person.name}}</span>
+              <p>{{person.debt}}</p>
+            </li>
+          </ul>
+        </section>
       </section>
     </section>
 
@@ -84,5 +91,9 @@
         </ul>
       </section>
     </section>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
