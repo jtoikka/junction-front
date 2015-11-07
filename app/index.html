@@ -18,6 +18,7 @@
   <link href="css/style.css" rel="stylesheet">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="dview/dview.js"></script>
@@ -40,93 +41,58 @@
           <li class="active"><a href="#" ng-click="view = 0">All <span class="sr-only">(current)</span></a></li>
           <li><a href="#" ng-click="view = 1">Receive</a></li>
           <li><a href="#" ng-click="view = 2">Pay</a></li>
-          <li><a href="#" ng-click="view = 3"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
+          <li><a href="#" ng-click="openModal()"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
         </ul>
       </div>
     </div>
   </nav>
-    <section class="container-fluid" id="main-contents">
-      <section class="row-fluid" id="debtList" ng-hide="view === 3">
-        <section class="col-sm-6 col-md-6 col-lg-6" ng-show="view === 0 || view === 1">
-          <section id="gains" class="panel panel-default">
-            <section class="panel-heading">
-              <span title="Add transaction" class="mega-octicon octicon-plus"></span>
-            </section>
-            <section class="panel-body">
-              <table class="table">
-                <tr ng-repeat="person in persons | filter: greaterThan('debt', 0)">
-                  <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-                  <td class="table-name"><span>{{person.name}}</span>
-                  <td class="table-money"><span>{{person.debt}} €</span>
-                </tr>
-                <tr class="total">
-                  <td class="table-pic">
-                  <td class="table-name">Total:
-                  <td class="table-money">??? €
-                </tr>
-              </table>
-            </section>
+  <section class="container-fluid" id="main-contents">
+    <section class="row-fluid" id="debtList" ng-hide="view === 3">
+      <section class="col-sm-6 col-md-6 col-lg-6" ng-show="view === 0 || view === 1">
+        <section id="gains" class="panel panel-default">
+          <section class="panel-heading">
+            <span title="Add transaction" class="mega-octicon octicon-plus"></span>
+          </section>
+          <section class="panel-body">
+            <table class="table">
+              <tr ng-repeat="person in persons | filter: greaterThan('debt', 0)">
+                <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+                <td class="table-name"><span>{{person.name}}</span>
+                <td class="table-money"><span>{{person.debt}} €</span>
+              </tr>
+              <tr class="total">
+                <td class="table-pic">
+                <td class="table-name">Total:
+                <td class="table-money">??? €
+              </tr>
+            </table>
           </section>
         </section>
-        <section class="col-sm-6 col-md-6 col-lg-6" ng-show="view === 0 || view === 2">
-          <section id="debts" class="panel panel-default">
-            <section class="panel-heading">
-              <span title="Add transaction" class="mega-octicon octicon-dash">
-            </section>
-            <section class="panel-body">
-              <table class="table">
-                <tr ng-repeat="person in persons | filter: lessThan('debt', 0)">
-                  <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-                  <td class="table-name"><span>{{person.name}}</span>
-                  <td class="table-money"><span>{{person.debt}} €</span>
-                </tr>
-                <tr class="total">
-                  <td class="table-pic">
-                  <td class="table-name">Total:
-                  <td class="table-money">??? €
-                </tr>
-              </table>
-            </section>
+      </section>
+      <section class="col-sm-6 col-md-6 col-lg-6" ng-show="view === 0 || view === 2">
+        <section id="debts" class="panel panel-default">
+          <section class="panel-heading">
+            <span title="Add transaction" class="mega-octicon octicon-dash">
           </section>
-        </sections>
+          <section class="panel-body">
+            <table class="table">
+              <tr ng-repeat="person in persons | filter: lessThan('debt', 0)">
+                <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+                <td class="table-name"><span>{{person.name}}</span>
+                <td class="table-money"><span>{{person.debt}} €</span>
+              </tr>
+              <tr class="total">
+                <td class="table-pic">
+                <td class="table-name">Total:
+                <td class="table-money">??? €
+              </tr>
+            </table>
+          </section>
+        </section>
       </section>
     </section>
+  </section>
 
-    <div ng-controller="EventController">
-      <section class="debtList" ng-show="view === 3" ng-init="add = 0">
-        <p>Add new event</p>
-        <section class="eventDetails">
-          <button type="button">Icon</button>
-          <input type="text" placeholder="Event name">
-        </section>
-        <section class="items">
-          <ul>
-            <li ng-repeat="item in items">
-              <p>{{item.amount}}</p>
-              <p>{{item.name}}</p>
-              <ul>
-                <li ng-repeat="person in item.persons">
-                  <p>{{person.name}}</p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-        <button ng-click="add = 1" ng-show="add === 0">Add Item</button>
-        <button ng-click="acceptEvent()" ng-show="add === 0">Accept</button>
-        <section id="itemAddPAnel" class="panel" ng-show="add === 1">
-          <input type="text" placeholder="Item name" ng-model="itemName">
-          <input type="number" min="0.01" step="0.01" placeholder="Total price" ng-model="itemPrice">
-          <ul>
-            <li ng-repeat="contact in contacts">
-              <input type="checkbox" ng-model="selectedContacts[contact.id]">{{contact.name}}</input>
-            </li>
-          </ul>
-          <button type="button" ng-click="addItem(); add = 0">Add</button>
-          <button type="button" ng-click="add = 0">Cancel</button>
-        </section>
-      </section>
-    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

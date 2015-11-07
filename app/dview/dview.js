@@ -1,4 +1,4 @@
-var debts = angular.module("debts", ['ngResource']);
+var debts = angular.module("debts", ['ngResource', 'ngAnimate', 'ui.bootstrap']);
 
 var persons = [
   {name: 'Antonio', debt: 25.55},
@@ -24,8 +24,12 @@ debts.factory("userFactory", function($resource) {
   return $resource("http://83.136.252.107:9000/api/users/");
 });
 
-debts.controller("DebtPersonController", function ($scope) {
+debts.controller("DebtPersonController", function ($scope, $timeout, $dialog) {
   $scope.persons = persons;
+
+  // $timeout(function(){
+  //   $dialog.dialog({}).open('modalContent.html');
+  // }, 3000);
 
   $scope.greaterThan = function(prop, val){
     return function(item){
@@ -39,12 +43,32 @@ debts.controller("DebtPersonController", function ($scope) {
     };
   };
 
+  var m;
+
+  $scope.openModal = function(size) {
+    m = $dialog.dialog({});
+    m.open('modal.html');
+  };
+
+  // $dialog.dialog({}).open('modalContent.html');
+
   $scope.$on("viewChangeEvent", function (event, args) {
-   $scope.view = args.view;
+    m.close();
   });
 });
 
-debts.controller("EventController", function ($scope, userFactory) {
+debts.directive('myModal', function() {
+   return {
+     restrict: 'A',
+     link: function(scope, element, attr) {
+       scope.dismiss = function() {
+           element.modal('hide');
+       };
+     }
+   };
+});
+
+debts.controller("ModalInstanceCtrl", function ($scope, userFactory, $rootScope) {
   $scope.items = items;
   $scope.contacts = contacts;
   $scope.selectedContacts = {};
@@ -67,7 +91,7 @@ debts.controller("EventController", function ($scope, userFactory) {
     userFactory.query(function(data) {
       console.log(data);
     });
-    $scope.$emit("viewChangeEvent", {view: 0 });
     $scope.items = [];
+    $rootScope.$broadcast("viewChangeEvent", {view: 0 });
   };
 });
