@@ -4,8 +4,14 @@ body {
 #gains .panel-heading {
   background-color: #a52d2d;
 }
+#gains .total .table-money {
+  color: #e55c5c;
+}
 #debts .panel-heading {
   background-color: #377893;
+}
+#debts .total .table-money {
+  color: #61b9df;
 }
 #main-contents {
   margin-left: auto;
@@ -24,6 +30,9 @@ body {
   border-radius: 0;
   color: #201f1f;
 }
+.panel-body {
+  padding: 12px 14px 0 14px;
+}
 .table {
   font-family: "Lato", Helvetica, sans-serif;
   font-size: 24px;
@@ -36,7 +45,7 @@ body {
 .table .table-pic {
   border-width: 0;
   width: 60px;
-  padding-bottom: 0;
+  padding-bottom: 2px;
 }
 .table .table-pic img {
   border-radius: 50%;
@@ -60,4 +69,14 @@ body {
   border-color: #000000;
   border-top-width: 0;
   border-bottom: solid 1px #000000;
+}
+.total .table-pic {
+  height: 60px;
+}
+.total .table-name {
+  border-bottom: solid 0px #000000;
+  text-align: right;
+}
+.total .table-money {
+  border-bottom: solid 0px #000000;
 }

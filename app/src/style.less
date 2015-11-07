@@ -7,18 +7,24 @@ body {
 }
 
 #gains {
-
-}
-
-#gains {
   .panel-heading {
     background-color: #a52d2d;
+  }
+  .total {
+    .table-money {
+      color: #e55c5c;
+    }
   }
 }
 
 #debts {
   .panel-heading {
     background-color: #377893;
+  }
+  .total {
+    .table-money {
+      color: #61b9df;
+    }
   }
 }
 
@@ -44,6 +50,11 @@ body {
   }
 }
 
+.panel-body {
+  padding: 12px 14px 0 14px;
+  // padding-bottom: 0;
+}
+
 .table {
   // th, td {
   //  border: 0px solid black;
@@ -60,7 +71,7 @@ body {
     border-width: 0;
     // background-color: #ff0000;
     width: 60px;
-    padding-bottom: 0;
+    padding-bottom: 2px;
     img {
       border-radius: 50%;
       width: 60px;
@@ -86,5 +97,20 @@ body {
     border-color: #000000;
     border-top-width: 0;
     border-bottom: solid 1px #000000;
+  }
+}
+
+.total {
+  // background-color: #1a1919;
+
+  .table-pic {
+    height: 60px;
+  }
+  .table-name {
+    border-bottom: solid 0px #000000;
+    text-align: right;
+  }
+  .table-money {
+    border-bottom: solid 0px #000000;
   }
 }
