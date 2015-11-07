@@ -18,19 +18,22 @@
 </head>
 <body ng-controller="DebtPersonController">
 
-  <p>Owe to you</p>
-
-  <ul>
-    <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
+  <div="gains">
+    <p>Owe to you</p>
+    <ul>
+      <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
+        <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
         <span>{{person.name}}</span>
         <p>{{person.debt}}</p>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 
   <p>You owe them</p>
 
   <ul>
     <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
+      <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
       <span>{{person.name}}</span>
       <p>{{person.debt}}</p>
     </li>
@@ -40,9 +43,10 @@
 
   <ul>
     <li ng-repeat="pending in pending">
-      <p>{{pending.person}}</p>
-      <span>{{pending.tag}}</span>
-      <span>{{pending.amount}}</span>
+      <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+      <span>{{pending.person}}</span>
+      <p>{{pending.tag}}</p>
+      <p>{{pending.amount}}</p>
     </li>
   </ul>
 
