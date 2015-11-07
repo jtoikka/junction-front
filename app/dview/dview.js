@@ -1,4 +1,4 @@
-var debts = angular.module("debts", []);
+var debts = angular.module("debts", [/*'ngResource'*/]);
 
 var persons = [
   {name: 'Antonio', debt: 25.55},
@@ -20,6 +20,10 @@ var contacts = [
 
 var items = [];
 
+/*debts.factory("userFactory", function($resource) {
+  return $resource("url");
+});*/
+
 debts.controller("DebtPersonController", function ($scope) {
   $scope.persons = persons;
 
@@ -40,7 +44,7 @@ debts.controller("DebtPersonController", function ($scope) {
   });
 });
 
-debts.controller("EventController", function ($scope) {
+debts.controller("EventController", function ($scope/*, userFactory*/) {
   $scope.items = items;
   $scope.contacts = contacts;
   $scope.selectedContacts = {};
@@ -60,6 +64,9 @@ debts.controller("EventController", function ($scope) {
   };
 
   $scope.acceptEvent = function() {
+    /*userFactory.query(function(data) {
+      console.log(data);
+    });*/
     $scope.$emit("viewChangeEvent", {view: 0 });
     $scope.items = [];
   };
