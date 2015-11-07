@@ -1,5 +1,5 @@
 // @import "bootstrap/bootstrap.less";
-
+@font-stack: "Lato", Helvetica, sans-serif;
 @panel-background-color: #201f1f;
 
 body {
@@ -7,12 +7,31 @@ body {
 }
 
 #gains {
+
+}
+
+#gains {
+  .panel-heading {
+    background-color: #a52d2d;
+  }
+}
+
+#debts {
+  .panel-heading {
+    background-color: #377893;
+  }
+}
+
+.panel {
   background-color: @panel-background-color;
   border-color: #000;
   border-radius: 0;
-  // border-width: 0;
+  border-color: #000;
+  border-width: 0;
+  // max-width: 500px;
+  margin: 0;
+
   .panel-heading {
-    background-color: #a52d2d;
     border-color: #000;
     border-width: 0;
     border-radius: 0;
@@ -20,6 +39,34 @@ body {
   }
 }
 
-.panel {
-  border-color: #000;
+.table {
+  // th, td {
+  //  border: 0px solid black;
+  // }
+  // background-color: #00ff00;
+  font-family: @font-stack;
+  font-size: 24px;
+  font-weight: 300;
+  color: #ffffff;
+  .td {
+    border-top-width: 0;
+  }
+  .table-pic {
+    // background-color: #ff0000;
+    width: 100px;
+    img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .table-name {
+    // background-color: #00ff00;
+    vertical-align: bottom;
+  }
+  .table-money {
+    // background-color: #0000ff;
+    width: 120px;
+    vertical-align: bottom;
+  }
 }
