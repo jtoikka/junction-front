@@ -18,7 +18,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="dview/dview.js"></script>
 </head>
-<body ng-controller="DebtPersonController">
+<body ng-controller="DebtPersonController" ng-init="view = 0">
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -33,45 +33,56 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Mark Otto</a></li>
-          <li class="active"><a href="#" ng-click="view = 1">All <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Receive</a></li>
-          <li><a href="#">Pay</a></li>
-          <li><a href="#" ng-click="view = 2"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
+          <li class="active"><a href="#" ng-click="view = 0">All <span class="sr-only">(current)</span></a></li>
+          <li><a href="#" ng-click="view = 1">Receive</a></li>
+          <li><a href="#" ng-click="view = 2">Pay</a></li>
+          <li><a href="#" ng-click="view = 3"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <section="debtList" class="panel" ng-show="view === 1">
-    <section="gains">
-      <p>Owe to you</p>
-      <ul>
-        <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
-          <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-          <span>{{person.name}}</span>
-          <p>{{person.debt}}</p>
-        </li>
-      </ul>
+    <section class="debtList" class="panel" ng-hide="view === 3">
+      <section class="gains" ng-show="view === 0 || view === 1">
+        <p>Owe to you</p>
+        <ul>
+          <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
+            <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+            <span>{{person.name}}</span>
+            <p>{{person.debt}}</p>
+          </li>
+        </ul>
+      </section>
+      <section class="debts" ng-show="view === 0 || view === 2">
+        <p>You owe them</p>
+        <ul>
+          <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
+            <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+            <span>{{person.name}}</span>
+            <p>{{person.debt}}</p>
+          </li>
+        </ul>
+      </section>
     </section>
-    <section="debts">
-      <p>You owe them</p>
-      <ul>
-        <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
-          <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-          <span>{{person.name}}</span>
-          <p>{{person.debt}}</p>
-        </li>
-      </ul>
-    </section>
-  </section>
 
-  <section="debtList">
-    <p>THIS IS P</p>
-    <section="eventDetails">
-      <button type="button">Icon</button>
-      <input type="text">
+    <section class="debtList" ng-show="view === 3">
+      <p>Add new event</p>
+      <section class="eventDetails">
+        <button type="button">Icon</button>
+        <input type="text" placeholder="Event name">
+      </section>
+      <section class="items">
+        <ul>
+          <li ng-repeat="item in items">
+            <p>{{item.amount}}</p>
+            <p>{{item.name}}</p>
+            <ul>
+              <li ng-repeat="person in item.persons">
+                <p>{{person}}</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
     </section>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

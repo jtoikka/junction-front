@@ -9,11 +9,9 @@ var persons = [
   {name: 'Late', debt: 99.99}
 ];
 
-var pending = [
-  {person: 'Antonio', tag: '\"Transaction\"', amount: 800.00},
-  {person: 'Antonio', tag: 'Protection-fee', amount: 200.00},
-  {person: 'Boo-so', tag: 'Pizza!', amount: 5.99},
-  {person: 'Antonio', tag: 'Dinner', amount: 77.89}
+var items = [
+  {name: 'Ambronite', persons: ['Antonio', 'Boo-so', 'Tume'], amount: 28.00},
+  {name: 'Mad-croc', persons: ['Antonio', 'Tume'], amount: 3.50}
 ];
 
 debts.controller("DebtPersonController", function ($scope) {
@@ -31,4 +29,7 @@ debts.controller("DebtPersonController", function ($scope) {
       return item[prop] < val;
     };
   };
+});
+debts.controller("EventController", function ($scope) {
+  $scope.items = items;
 });
