@@ -33,17 +33,14 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Mark Otto</a></li>
-          <li class="active"><a href="#">All <span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="#" ng-click="view = 1">All <span class="sr-only">(current)</span></a></li>
           <li><a href="#">Receive</a></li>
           <li><a href="#">Pay</a></li>
-          <li><a href="#"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
+          <li><a href="#" ng-click="view = 2"><span title="Add transaction" class="octicon octicon-plus"></span></a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <button ng-click="view = 1">Debts</button>
-  <button ng-click="view = 2">Add Event</button>
-  <button ng-click="view = 3">Stuff</button>
   <section="debtList" class="panel" ng-show="view === 1">
     <section="gains">
       <p>Owe to you</p>
