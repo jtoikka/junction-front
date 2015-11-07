@@ -10,18 +10,15 @@ var persons = [
 ];
 
 var contacts = [
-  {name: 'Antonio'},
-  {name: 'Boo-so'},
-  {name: 'Emma'},
-  {name: 'Late'},
-  {name: 'Skele-Toni'},
-  {name: 'Tume'}
+  {name: 'Antonio', id: 20},
+  {name: 'Boo-so', id: 5},
+  {name: 'Emma', id: 17},
+  {name: 'Late', id: 1},
+  {name: 'Skele-Toni', id: 666777},
+  {name: 'Tume', id: 9}
 ];
 
-var items = [
-  {name: 'Ambronite', persons: ['Antonio', 'Boo-so', 'Tume'], amount: 28.00},
-  {name: 'Mad-croc', persons: ['Antonio', 'Tume'], amount: 3.50}
-];
+var items = [];
 
 debts.controller("DebtPersonController", function ($scope) {
   $scope.persons = persons;
@@ -37,8 +34,33 @@ debts.controller("DebtPersonController", function ($scope) {
       return item[prop] < val;
     };
   };
+
+  $scope.$on("viewChangeEvent", function (event, args) {
+   $scope.view = args.view;
+  });
 });
+
 debts.controller("EventController", function ($scope) {
   $scope.items = items;
   $scope.contacts = contacts;
+  $scope.selectedContacts = {};
+
+  $scope.addItem = function() {
+      var sel = [];
+      for (var i = 0; i < $scope.contacts.length; i++) {
+        var con = $scope.contacts[i];
+        if ($scope.selectedContacts[con.id]) {
+          sel.push(con);
+        }
+      }
+      $scope.items.push({name: $scope.itemName, persons: sel, amount: $scope.itemPrice});
+      $scope.itemName = "";
+      $scope.itemPrice = 0;
+      $scope.selectedContacts = {};
+  };
+
+  $scope.acceptEvent = function() {
+    $scope.$emit("viewChangeEvent", {view: 0 });
+    $scope.items = [];
+  };
 });
