@@ -17,38 +17,39 @@
   <script src="dview/dview.js"></script>
 </head>
 <body ng-controller="DebtPersonController">
+  <button ng-click="view = 1">Debts</button>
+  <button ng-click="view = 2">Add Event</button>
+  <button ng-click="view = 3">Stuff</button>
+  <section="debtList" class="panel" ng-show="view === 1">
+    <section="gains">
+      <p>Owe to you</p>
+      <ul>
+        <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
+          <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+          <span>{{person.name}}</span>
+          <p>{{person.debt}}</p>
+        </li>
+      </ul>
+    </section>
+    <section="debts">
+      <p>You owe them</p>
+      <ul>
+        <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
+          <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+          <span>{{person.name}}</span>
+          <p>{{person.debt}}</p>
+        </li>
+      </ul>
+    </section>
+  </section>
 
-  <div="gains">
-    <p>Owe to you</p>
-    <ul>
-      <li ng-repeat="person in persons | filter: greaterThan('debt', 0)">
-        <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-        <span>{{person.name}}</span>
-        <p>{{person.debt}}</p>
-      </li>
-    </ul>
-  </div>
-
-  <p>You owe them</p>
-
-  <ul>
-    <li ng-repeat="person in persons | filter: lessThan('debt', 0)">
-      <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-      <span>{{person.name}}</span>
-      <p>{{person.debt}}</p>
-    </li>
-  </ul>
-
-  <p>Pending transactions</p>
-
-  <ul>
-    <li ng-repeat="pending in pending">
-      <img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
-      <span>{{pending.person}}</span>
-      <p>{{pending.tag}}</p>
-      <p>{{pending.amount}}</p>
-    </li>
-  </ul>
+  <section="debtList">
+    <p>THIS IS P</p>
+    <section="eventDetails">
+      <button type="button">Icon</button>
+      <input type="text">
+    </section>
+  </section>
 
 </body>
 </html>

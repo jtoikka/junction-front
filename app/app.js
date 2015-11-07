@@ -1,12 +1,22 @@
-'use strict';
-
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+angular.module('routerApp', [
+  'ui.router',
+  'dview',
+  'aview'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', function($stateProvider,  $urlRouterProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
+
+  $urlRouterProvider.otherwise('dview');
+  $.stateProvider
+
+  .state('dview', {
+    url: '/dview',
+    templateUrl: 'dview/dview.html'
+  })
+
+  .state('aview', {
+    url: '/aview',
+    templateUrl: 'aview/aview.html'
+  });
 }]);
