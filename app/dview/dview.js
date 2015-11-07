@@ -1,5 +1,10 @@
 var debts = angular.module("debts", ['ngResource', 'ngAnimate', 'ui.bootstrap']);
 
+var cuid = 1;
+//var address = "http://83.136.252.107:9000/"
+var address = "http://localhost:9000/";
+var persons = []
+/*
 var persons = [
   {name: 'Antonio', debt: 25.55},
   {name: 'Boo-so', debt: -5.76},
@@ -7,7 +12,7 @@ var persons = [
   {name: 'Tume', debt: 12.42},
   {name: 'Emma', debt: -6.34},
   {name: 'Late', debt: 99.99}
-];
+];*/
 
 var contacts = [
   {name: 'Antonio', id: 20},
@@ -21,10 +26,19 @@ var contacts = [
 var items = [];
 
 debts.factory("userFactory", function($resource) {
-  return $resource("http://83.136.252.107:9000/api/users/");
+  return $resource(address + "api/users/");
+});
+
+debts.factory("saldo", function($resource) {
+  return $resource(address + "api/users/" + cuid + "/saldo/");
+});
+
+debts.factory('userDetail', function( $resource ) {
+    return $resource(address + "api/users/:id", {id: '@userID'});
 });
 
 debts.controller("DebtPersonController", function ($scope, $timeout, $dialog) {
+
   $scope.persons = persons;
 
   // $timeout(function(){
@@ -57,18 +71,7 @@ debts.controller("DebtPersonController", function ($scope, $timeout, $dialog) {
   });
 });
 
-debts.directive('myModal', function() {
-   return {
-     restrict: 'A',
-     link: function(scope, element, attr) {
-       scope.dismiss = function() {
-           element.modal('hide');
-       };
-     }
-   };
-});
-
-debts.controller("ModalInstanceCtrl", function ($scope, userFactory, $rootScope) {
+debts.controller("EventController", function ($scope, $rootScope, $http, saldo, userDetail) {
   $scope.items = items;
   $scope.contacts = contacts;
   $scope.selectedContacts = {};
@@ -87,9 +90,14 @@ debts.controller("ModalInstanceCtrl", function ($scope, userFactory, $rootScope)
       $scope.selectedContacts = {};
   };
 
+
   $scope.acceptEvent = function() {
-    userFactory.query(function(data) {
-      console.log(data);
+    saldo.query(function(data) {
+      angular.forEach(data, function(d){
+        userDetail.get({id: d.id}).$promise.then(function(data){
+          persons.push({name: data.username, debt:d.saldo })
+        });
+      });
     });
     $scope.items = [];
     $rootScope.$broadcast("viewChangeEvent", {view: 0 });
