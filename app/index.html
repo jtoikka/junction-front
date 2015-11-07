@@ -64,25 +64,37 @@
       </section>
     </section>
 
-    <section class="debtList" ng-show="view === 3">
-      <p>Add new event</p>
-      <section class="eventDetails">
-        <button type="button">Icon</button>
-        <input type="text" placeholder="Event name">
+    <div ng-controller="EventController">
+      <section class="debtList" ng-show="view === 3" ng-init="add = 0">
+        <p>Add new event</p>
+        <section class="eventDetails">
+          <button type="button">Icon</button>
+          <input type="text" placeholder="Event name">
+        </section>
+        <section class="items">
+          <ul>
+            <li ng-repeat="item in items">
+              <p>{{item.amount}}</p>
+              <p>{{item.name}}</p>
+              <ul>
+                <li ng-repeat="person in item.persons">
+                  <p>{{person}}</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <button ng-click="add = 1" ng-show="add === 0">Add</button>
+        <section id="itemAddPAnel" class="panel" ng-show="add === 1">
+          <input type="text" placeholder="Item name">
+          <input type="number" min="0.01" step="0.01" placeholder="Total price"/>
+          <ul>
+            <li ng-repeat="contact in contacts">
+              <input type="checkbox">{{contact.name}}</input>
+            </li>
+          </ul>
+        </section>
       </section>
-      <section class="items">
-        <ul>
-          <li ng-repeat="item in items">
-            <p>{{item.amount}}</p>
-            <p>{{item.name}}</p>
-            <ul>
-              <li ng-repeat="person in item.persons">
-                <p>{{person}}</p>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-    </section>
+    </div
 </body>
 </html>

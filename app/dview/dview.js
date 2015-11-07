@@ -9,6 +9,15 @@ var persons = [
   {name: 'Late', debt: 99.99}
 ];
 
+var contacts = [
+  {name: 'Antonio'},
+  {name: 'Boo-so'},
+  {name: 'Emma'},
+  {name: 'Late'},
+  {name: 'Skele-Toni'},
+  {name: 'Tume'}
+];
+
 var items = [
   {name: 'Ambronite', persons: ['Antonio', 'Boo-so', 'Tume'], amount: 28.00},
   {name: 'Mad-croc', persons: ['Antonio', 'Tume'], amount: 3.50}
@@ -31,4 +40,5 @@ debts.controller("DebtPersonController", function ($scope) {
 });
 debts.controller("EventController", function ($scope) {
   $scope.items = items;
+  $scope.contacts = contacts;
 });
