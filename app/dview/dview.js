@@ -57,13 +57,17 @@ debts.controller("DebtPersonController", function ($scope, $rootScope, $timeout,
 
   $scope.loadData = function() {
     //console.log("consolelog");
+    $scope.totalPos = 0;
+    $scope.totalNeg = 0;
     $rootScope.persons = [];
     saldo.query(function(data) {
       angular.forEach(data, function(d){
         userDetail.get({id: d.id}).$promise.then(function(data){
           //console.log(data);
+
           $rootScope.persons.push({id:data.id, name: data.username, debt:d.saldo });
           $scope.persons = $rootScope.persons;
+          
         });
       });
     });
