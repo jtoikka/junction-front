@@ -28,7 +28,7 @@ debts.factory('userDetail', function( $resource ) {
     return $resource(address + "api/users/:id", {id: '@userID'});
 });
 
-debts.controller("DebtPersonController", function ($scope, $timeout, $dialog, saldo, userDetail) {
+debts.controller("DebtPersonController", function ($scope, $rootScope, $timeout, $dialog, saldo, userDetail) {
 
   $scope.persons = persons;
 
@@ -56,11 +56,14 @@ debts.controller("DebtPersonController", function ($scope, $timeout, $dialog, sa
   };
 
   $scope.loadData = function() {
-    $scope.persons = [];
+    console.log("consolelog");
+    $rootScope.persons = [];
     saldo.query(function(data) {
       angular.forEach(data, function(d){
         userDetail.get({id: d.id}).$promise.then(function(data){
-          $scope.persons.push({name: data.username, debt:d.saldo });
+          console.log(data);
+          $rootScope.persons.push({name: data.username, debt:d.saldo });
+          $scope.persons = $rootScope.persons;
         });
       });
     });
@@ -76,7 +79,7 @@ debts.controller("DebtPersonController", function ($scope, $timeout, $dialog, sa
 
 debts.controller("EventController", function ($scope, $rootScope, $http) {
   $scope.items = items;
-  $scope.contacts = contacts;
+  $scope.persons = $rootScope.persons;
   $scope.selectedContacts = {};
 
   $scope.transTargetId = 2;
