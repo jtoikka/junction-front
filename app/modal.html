@@ -4,23 +4,13 @@
     <section class="panel-heading">
       Transaction
     </section>
+    <ul>
+      <li ng-repeat="contact in contacts">
+        <input type="radio" name ="contactRadio" ng-click"transTargetId = contact.id">{{contact.name}}</input>
+      </li>
+    </ul>
     <section class="panel-body">
-      <div class="list-group">
-        <!-- <div class="col-lg-6"> -->
-          <!-- <div class="input-group">
-            <span class="input-group-addon" ng-repeat="contact in contacts" ng-click="scb = contact.id">
-              <input type="radio" aria-label="..." >{{contact.name}}
-            </span>
-            <!-- <input type="text" class="form-control" aria-label="..."> -->
-          <!-- </div> -->
-        <!-- </div> -->
-        <button type="button" class="list-group-item" ng-repeat="contact in contacts" ng-click="scb = contact.id" ng-disabled="scb === contact.id">{{contact.name}}</button>
-        <!-- <button type="button" class="list-group-item">Cras justo odio</button>
-        <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-        <button type="button" class="list-group-item">Morbi leo risus</button>
-        <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-        <button type="button" class="list-group-item">Vestibulum at eros</button> -->
-      </div>
+      <button type="button" ng-click="sendTransaction()">BEGIN TRANSACTION</button>
     </section>
   </section>
 </section>
