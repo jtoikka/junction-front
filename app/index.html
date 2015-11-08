@@ -56,7 +56,7 @@
           <section class="panel-body">
             <table class="table">
               <tr ng-repeat="person in persons | filter: greaterThan('debt', 0)">
-                <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+                <td class="table-pic"><img ng-src="pics/{{person.name}}.jpg" alt="Cat" style="width:80px;height:80px;">
                 <td class="table-name"><span>{{person.name}}</span>
                 <td class="table-money"><span>{{person.debt}} €</span>
               </tr>
@@ -77,7 +77,7 @@
           <section class="panel-body">
             <table class="table">
               <tr ng-repeat="person in persons | filter: lessThan('debt', 0)">
-                <td class="table-pic"><img src="http://www.cats.org.uk/uploads/images/pages/photo_latest14.jpg" alt="Cat" style="width:80px;height:80px;">
+                <td class="table-pic"><img ng-src="pics/{{person.name}}.jpg" alt="Cat" style="width:80px;height:80px;">
                 <td class="table-name"><span>{{person.name}}</span>
                 <td class="table-money"><span>{{person.debt}} €</span>
               </tr>
