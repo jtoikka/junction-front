@@ -56,13 +56,13 @@ debts.controller("DebtPersonController", function ($scope, $rootScope, $timeout,
   };
 
   $scope.loadData = function() {
-    console.log("consolelog");
+    //console.log("consolelog");
     $rootScope.persons = [];
     saldo.query(function(data) {
       angular.forEach(data, function(d){
         userDetail.get({id: d.id}).$promise.then(function(data){
-          console.log(data);
-          $rootScope.persons.push({name: data.username, debt:d.saldo });
+          //console.log(data);
+          $rootScope.persons.push({id:data.id, name: data.username, debt:d.saldo });
           $scope.persons = $rootScope.persons;
         });
       });
@@ -82,8 +82,8 @@ debts.controller("EventController", function ($scope, $rootScope, $http) {
   $scope.persons = $rootScope.persons;
   $scope.selectedContacts = {};
 
-  $scope.transTargetId = 2;
-  $scope.transAmount = 15;
+  //$scope.transTargetId = 2;
+  //$scope.transAmount = 15;
   $scope.transTag = 'Food';
 
 
@@ -102,7 +102,9 @@ debts.controller("EventController", function ($scope, $rootScope, $http) {
   };
 
   $scope.sendTransaction = function() {
-    var payer = $scope.transTargetId;
+    //console.log($scope.sample);
+    var payer = $scope.receiver.id;
+    console.log(payer)
     var receiver = cuid;
     var amount = $scope.transAmount;
     if (amount < 0) {
