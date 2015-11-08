@@ -1,7 +1,7 @@
 var debts = angular.module("debts", ['ngResource', 'ngAnimate', 'ui.bootstrap']);
 
 var cuid = 1;
-var address = "http://83.136.252.107:9000/";
+var address = "http://83.136.252.107:8000/";
 //var address = "http://localhost:9000/";
 var persons = [];
 
