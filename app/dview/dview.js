@@ -66,8 +66,11 @@ debts.controller("DebtPersonController", function ($scope, $rootScope, $timeout,
           //console.log(data);
 
           $rootScope.persons.push({id:data.id, name: data.username, debt:d.saldo });
-          $scope.persons = $rootScope.persons;
+          if(d.saldo > 0){ totalPos += d.saldo; }
+          else { totalNeg += d.saldo; }
           
+          $scope.persons = $rootScope.persons;
+
         });
       });
     });
