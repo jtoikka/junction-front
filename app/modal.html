@@ -1,46 +1,50 @@
 
 <section ng-controller="EventController" class="container-fluid">
-  <section class="panel panel-default">
+  <section class="panel panel-default" id="modal">
     <section class="panel-heading">
-      <h2>Add a new event</h2>
+      Transaction
     </section>
     <section class="panel-body">
-      <section ng-init="add = 0">
-        <section id="debtList" class="panel panel-default">
-          <section class="panel-body">
-            <section id="eventDetails">
-              <button type="button">Icon</button>
-              <input type="text" placeholder="Event name">
-            </section>
-            <section class="items">
-              <ul>
-                <li ng-repeat="item in items">
-                  <span>{{item.amount}}</span>
-                  <span>{{item.name}}</span>
-                  <ul>
-                    <li ng-repeat="person in item.persons">
-                      <span>{{person.name}}</span>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </section>
-            <button ng-click="add = 1" ng-show="add === 0">Add Item</button>
-            <button ng-click="acceptEvent()" ng-show="add === 0">Accept</button>
-            <section id="itemAddPAnel" class="panel" ng-show="add === 1">
-              <input type="text" placeholder="Item name" ng-model="itemName">
-              <input type="number" min="0.01" step="0.01" placeholder="Total price" ng-model="itemPrice">
-              <ul>
-                <li ng-repeat="contact in contacts">
-                  <input type="checkbox" ng-model="selectedContacts[contact.id]">{{contact.name}}</input>
-                </li>
-              </ul>
-              <button type="button" ng-click="addItem(); add = 0">Add</button>
-              <button type="button" ng-click="add = 0">Cancel</button>
-            </section>
-          </section>
-        </section>
-      </section>
+      <div class="list-group">
+        <!-- <div class="col-lg-6"> -->
+          <!-- <div class="input-group">
+            <span class="input-group-addon" ng-repeat="contact in contacts" ng-click="scb = contact.id">
+              <input type="radio" aria-label="..." >{{contact.name}}
+            </span>
+            <!-- <input type="text" class="form-control" aria-label="..."> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <button type="button" class="list-group-item" ng-repeat="contact in contacts" ng-click="scb = contact.id" ng-disabled="scb === contact.id">{{contact.name}}</button>
+        <!-- <button type="button" class="list-group-item">Cras justo odio</button>
+        <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+        <button type="button" class="list-group-item">Morbi leo risus</button>
+        <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+        <button type="button" class="list-group-item">Vestibulum at eros</button> -->
+      </div>
     </section>
   </section>
 </section>
+
+<!-- <section ng-init="add = 0">
+  <section id="debtList" class="panel panel-default">
+    <section class="panel-body">
+      <section id="eventDetails">
+        <button type="button">Icon</button>
+        <input type="text" placeholder="Event name">
+      </section>
+      <button ng-click="add = 1" ng-show="add === 0">Add Item</button>
+      <button ng-click="acceptEvent()" ng-show="add === 0">Accept</button>
+      <section id="itemAddPAnel" class="panel" ng-show="add === 1">
+        <input type="text" placeholder="Item name" ng-model="itemName">
+        <input type="number" min="0.01" step="0.01" placeholder="Total price" ng-model="itemPrice">
+        <ul>
+          <li ng-repeat="contact in contacts">
+            <input type="checkbox" ng-model="selectedContacts[contact.id]">{{contact.name}}</input>
+          </li>
+        </ul>
+        <button type="button" ng-click="addItem(); add = 0">Add</button>
+        <button type="button" ng-click="add = 0">Cancel</button>
+      </section>
+    </section>
+  </section>
+</section> -->
